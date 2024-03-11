@@ -15,4 +15,12 @@ bool list_removeFirst(LinkedList* list);
 bool list_removeAt(LinkedList* list, int pos);
 void list_print(LinkedList* list);
 
+// new funcs
+void list_printElements(LinkedList* l1, LinkedList* l2);
+bool list_equals(LinkedList* l1, LinkedList* l2);
+int list_isSorted(LinkedList* l);
+void list_removeDuplicates(LinkedList* l);
+void list_printReverse(LinkedList* l);
+LinkedList* reverse(LinkedList* l);
+
 #endif
