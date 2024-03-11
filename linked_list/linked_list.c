@@ -124,3 +124,138 @@ bool list_removeAt(LinkedList* list, int pos) {
 
     return true;    
 }
+
+void list_printElements(LinkedList* l1, LinkedList* l2){
+
+    Node* num = l1->head;
+    Node* cur = l2->head;
+
+    printf("Resultado: \n");
+    bool printed = false;
+    int i = 0;
+    while (i<l2->size){
+
+        if(num->element == i){
+            element_print(cur->element);
+            printf(" ");
+            printed = true;
+            cur = cur->next;
+            if (num->next != NULL ){num = num->next;}
+            
+        } else if (printed==false) {
+            cur = cur->next;
+        }
+        printed = false;
+        i++;
+
+    }
+    
+    printf("\n");
+}
+
+bool list_equals(LinkedList* l1, LinkedList* l2){
+    Node* num = l1->head;
+    Node* cur = l2->head;
+    if (l1->size != l2->size){return false;}
+    for (int i = 0; i<l1->size ; i++) {
+
+        if (num->element != cur->element){
+            return false;
+        } else {
+            cur = cur->next;
+            num = num->next;
+        }
+    }
+    return true;
+}
+
+int list_isSorted(LinkedList* l){
+
+    Node* cur = l->head;
+    Node* prox = l->head->next;
+    bool isAsc = true;
+
+    if (prox->element > cur->element) {isAsc = true;} else {isAsc = false;}
+
+    while (prox != NULL){
+
+        if(isAsc && prox->element < cur->element) {
+
+           return 0;
+
+        } else if (!isAsc && prox->element > cur->element) {
+
+            return 0;
+        }
+
+        cur = cur->next;
+        prox = prox->next;
+
+    }
+    if (isAsc){return 1;}else{return 2;} 
+}
+
+void list_printReverse(LinkedList* l){
+
+    Node* cur = l->head;
+
+    int retorno[l->size];
+    int i=0;
+
+    while(cur!=NULL){
+        retorno[i] = cur->element;
+        i++;
+        cur = cur->next;
+    }
+    
+    for (i = (l->size)-1 ; i!=0;  i--){
+        printf("%d ",retorno[i]);
+    }
+    printf("\n");
+}
+
+LinkedList* reverse(LinkedList* l){
+
+    LinkedList* novaLista = list_create();
+
+    Node* cur = l->head;
+
+
+    while(cur!=NULL){
+
+        list_insertFirst(novaLista, (Element)cur->element); 
+        cur = cur->next;
+    }
+    list_print(novaLista);
+}
+
+void list_removeDuplicates(LinkedList* l){
+
+    Node* cur = l->head;
+    Node* read = l->head;
+
+
+    
+   
+    while (cur!=NULL) {
+        read=cur->next;
+        int i = 1;
+        while(read!=NULL){
+
+            if(cur->element == read->element){
+                bool a = list_removeAt(l, i);
+                if(a==false){
+                    printf("falsofasfasf");
+                    
+                    list_removeAt(l, (l->size));}
+                printf("REVMOVENDO ");
+            }
+            i++;
+            read=read->next;
+
+        }
+
+        cur=cur->next;
+    }
+
+}

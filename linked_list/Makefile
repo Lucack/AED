@@ -12,4 +12,5 @@ main: linked_list
 
 run: main
 	./build/main
-
+clean:
+	rm -rf build
