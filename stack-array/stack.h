@@ -17,4 +17,6 @@ bool stack_is_full(Stack* stack);
 int stack_size(Stack* stack);
 void stack_print(Stack* stack);
 
+
+
 #endif

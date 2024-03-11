@@ -1,4 +1,5 @@
 CC = gcc -Wall -pedantic
+EXE = $(BUILD)/main
 
 build:
 	mkdir -p build
@@ -11,3 +12,6 @@ stack: element
 
 main: stack
 	$(CC) main.c build/stack.o build/element.o -o build/main
+
+run: main
+	./build/main

@@ -69,3 +69,4 @@ void stack_print(Stack* stack) {
     }
     printf("\n");
 }
+
