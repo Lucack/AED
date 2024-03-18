@@ -24,6 +24,23 @@ Node* createNode(Element key) {
     return node;
 }
 
+void bst_destroyRecur(Node* root){
+    if(root == NULL){
+        return;
+    }
+    bst_destroyRecur(root->left);
+    bst_destroyRecur(root->right);
+    free(root);
+
+}
+
+void bst_destroy(BST* bst){
+
+    bst_destroyRecur(bst->root);
+    free(bst);
+
+}
+
 Node* makeSampleTree() {
     Node* root = createNode(50);
     root->left = createNode(43);
@@ -39,8 +56,8 @@ Node* makeSampleTree() {
 BST* bst_create() {
     BST* bst = malloc(sizeof(BST));
 
-    // bst->root = NULL;
-    bst->root = makeSampleTree();
+    bst->root = NULL;
+    //bst->root = makeSampleTree(); // template
 
     return bst;
 }
@@ -62,6 +79,40 @@ bool bst_searchRecur(Node* node, Element key) {
 bool bst_search(BST* bst, Element key) {
     return bst_searchRecur(bst->root, key);
 }
+
+void bst_insert(BST* bst, Element key){
+
+    if(bst->root == NULL){
+        bst->root = createNode(key);
+        return;
+    }
+
+    Node* parent = NULL;
+    Node* cur = bst->root;
+
+    while(cur == NULL){
+        if ( cur->key == key) { // conferindo se é o mesmo elemento, se for n continua rodando
+            return;
+        } 
+
+        if (key <cur->key) { // achando posição folha correta
+            parent = cur;
+            cur = cur->left;
+        } else {
+            parent = cur;
+            cur = cur->right;
+        } 
+
+        if(key<parent->key){ // coloca no lugar correto
+            parent->left = createNode(key);
+    
+        } else { parent->right = createNode(key);}
+
+    }
+
+
+}
+
 
 void bst_printInOrderRecur(Node* node) {
     if (node == NULL) {

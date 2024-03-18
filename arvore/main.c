@@ -31,16 +31,35 @@ void testTraversals() {
     printf("\n");
 }
 
+void testInsert(){
+    BST* bst = bst_create();
+    //bst_insert(bst, 50);
+    bst_insert(bst, 43);
+    bst_insert(bst, 3);
+    bst_insert(bst, 48);
+    bst_insert(bst, 61);
+    bst_insert(bst, 58);
+    bst_insert(bst, 70);
+
+    bst_printInOrder(bst);
+    bst_destroy(bst);
+}
+
 void testPrint() {
     BST* bst = bst_create();
 
     bst_print(bst);
+
+    bst_destroy(bst);
 }
 
 int main() {
+
     //testSearch();
-    testTraversals();
-    //testPrint();
+    //testTraversals();
+    testInsert();
+    testPrint();
+   
 
     return 0;
 }
